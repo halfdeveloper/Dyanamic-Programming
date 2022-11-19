@@ -1,0 +1,68 @@
+Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: [0,1,1]
+Explanation:
+0 --> 0
+1 --> 1
+2 --> 10
+Example 2:
+
+Input: n = 5
+Output: [0,1,1,2,1,2]
+Explanation:
+0 --> 0
+1 --> 1
+2 --> 10
+3 --> 11
+4 --> 100
+5 --> 101
+ 
+Eaxmple 3:
+Input:n=7
+Output: [0,1,1,2,1,2,2,3]
+Explanation:
+0 --> 0
+1 --> 1
+2 --> 10
+3 --> 11
+4 --> 100
+5 --> 101
+6 --> 110
+7 --> 111
+
+Constraints:
+
+0 <= n <= 105
+ /*********************Solution **********************/
+ class Solution {
+    public static int bitCount(int number)
+    {
+        if(number==0)
+        return 0;
+        if(number==1)
+        return 1;
+        //if number is even it return number of 1 else it return num+1;
+        if(number%2==0)
+        {
+            return bitCount(number/2);
+        }
+        else
+        {
+            return 1+bitCount(number/2);
+        }
+    }
+    public int[] countBits(int n) {
+        int ans[]=new int[n+1];
+        
+        for(int i=0;i<ans.length;i++)
+        {
+            ans[i]=bitCount(i);
+        }
+        return ans;
+    }
+}
